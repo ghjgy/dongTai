@@ -15,7 +15,7 @@
 						  </view>
 						 
 					 </view>
-					 <view class="u-f-a" v-show="!item.guanzhupd" @tap="oo">
+					 <view class="u-f-a" v-show="!item.isguanzhu" @tap="oo">
 						 <view class="icon iconfont icon-zengjia"></view>关注
 					 </view>
 				 </view>
@@ -28,7 +28,7 @@
 				 <view class="index-listthree " @tap="opendetail">
 					 <!--图片&视频-->
 					   <indexListFile
-					   :media="item.media"
+					   :medias="item.medias"
 					   ></indexListFile>
 				 </view>
 				 <view class="index-listfour u-f-aj">
@@ -102,12 +102,13 @@
 				 this.$emit('caozuo',type);								
 			},
 			opendetail(){
+				const encodedItem = encodeURIComponent(JSON.stringify(this.item));
 				uni.navigateTo({
-					url:'../../pages/detail/detail?detailinfo='+JSON.stringify(this.item)
+					url:`../../pages/detail/detail?detailinfo=${encodedItem}`
 				})
 			},
-			getImageClass(im) {
-			  if (this.item.titleimg.length > 1) {
+/* 			getImageClass(im) {
+			  if (this.item.medias.length > 1) {
 				  console.log(this.item)
 				return 'image-1x1';
 			  } else {
@@ -119,7 +120,7 @@
 				  return 'image-3x4';
 				}
 			  }
-			}
+			} */
 		}
 	}
 </script>

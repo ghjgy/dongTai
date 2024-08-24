@@ -1,7 +1,7 @@
 <template>
   <view class="gallery">
 	<!-- 显示图片 -->
-	<block v-for="(item,index) in displayedMedia" :key="index" class="image-container">
+	<block v-for="(item,index) in displayedMedias" :key="index" class="image-container">
 		<template v-if="item.type === 'image'">
 			<image :src="item.src" @load="onImageLoad(index, $event)" :class="getImageClass(item)" mode="aspectFill"></image>
 	  </template>
@@ -17,7 +17,7 @@
 <script>
 export default {
 	props:{
-		media:Array		
+		medias:Array		
 	},
   data() {
     return {
@@ -26,22 +26,22 @@ export default {
     }; 
   },
   computed: {
-    displayedMedia() {
-      this.images = this.media.filter(item => item.type === 'image');
-      this.videos = this.media.filter(item => item.type === 'video');
+    displayedMedias() {
+      this.images = this.medias.filter(item => item.type === 'image');
+      this.videos = this.medias.filter(item => item.type === 'video');
 
       // 确保至少保留一个视频
-      let combinedMedia = [];
+      let combinedMedias = [];
 
       if (this.videos.length) {
         // 如果有视频，则确保视频始终位于列表的末尾
-        combinedMedia = [...this.images.slice(0, 2), this.videos[0]]; // 只保留前两个图片加上视频
+        combinedMedias = [...this.images.slice(0, 2), this.videos[0]]; // 只保留前两个图片加上视频
       } else {
-        combinedMedia = this.images.slice(0, 3); // 如果没有视频，则只保留前三张图片
+        combinedMedias = this.images.slice(0, 3); // 如果没有视频，则只保留前三张图片
       }
 
       // 最多只显示三个媒体文件
-      return combinedMedia.slice(0, 3);
+      return combinedMedias.slice(0, 3);
     }
   },
   methods: {
@@ -49,21 +49,21 @@ export default {
 		  console.log(e)
 	    const { width, height } = e.detail;
 		console.log(width)
-	    this.media[index] = { ...this.media[index], width, height };
+	    this.medias[index] = { ...this.medias[index], width, height };
 		console.log(index)
 	  },
 	  onVideoLoadedMetadata(index,e){
 		  console.log(e)
 		const { width, height } = e.detail;
 		console.log(width)
-		this.media[index] = { ...this.media[index], width, height };
+		this.medias[index] = { ...this.medias[index], width, height };
 		console.log(index)
 		// 更新视频容器的类名
 /* 		  const aspectRatio = width / height;
 		  if (aspectRatio > 1) {
-			this.$set(this.displayedMedia[index], 'class', 'video-4x3');
+			this.$set(this.displayedMedias[index], 'class', 'video-4x3');
 		  } else {
-			this.$set(this.displayedMedia[index], 'class', 'video-3x4');
+			this.$set(this.displayedMedias[index], 'class', 'video-3x4');
 		  } */
 	  },
     getImageClass(item) {

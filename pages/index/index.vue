@@ -51,11 +51,13 @@
 					{
 						userimg:"../../static/userpic/10.jpg",
 						username:"昵称",
-						guanzhupd:true,
+						userage:'30',
+						sex:0,//0代表男，1 代表女
+						isguanzhu:false,
 						title:"中共中央举行纪念邓小平同志诞辰120周年座谈会习近平发表重要讲话",
 						contents:"新华社北京8月22日电 中共中央22日上午在人民大会堂举行座谈会，纪念邓小平同志诞辰120周年。中共中央总书记、国家主席、中央军委主席习近平发表重要讲话。他强调，邓小平同志是全党全军全国各族人民公认的享有崇高威望的卓越领导人，伟大的马克思主义者，伟大的无产阶级革命家、政治家、军事家、外交家，久经考验的共产主义战士",						
 						type:"img",//img图片，video视频
-						media: [
+						medias: [
 						{ type: 'image', src: '../../static/datapic/16.jpg', width: 1024, height: 2768 },
 						{ type: 'image', src: '../../static/datapic/15.jpg', width: 1500, height: 500 },
 						{ type: 'image', src: '../../static/datapic/11.jpg', width: 1500, height: 500 },
@@ -67,19 +69,21 @@
 							dingnum:10,
 							cainum:10
 						},
-						pinglunnum:10,
-						sharenum:100
+						positiona:'深圳 龙岗',
+						sharenum:30,
+						pinglunnum:100,
+						zannum:50
 					},
 					{
 						userimg:"../../static/userpic/10.jpg",
 						username:"昵称",
-						guanzhupd:true,
+						isguanzhu:true,
 						title:"直击辽宁葫芦岛抗洪抢险一线",
 						contents:"受持续强降雨影响，辽宁省葫芦岛市建昌县、绥中县部分乡镇出现险情，部分人员被困。8月20日，辽宁省消防救援总队调派8车、27人在葫芦岛市开展抢险救援，出动省机动支队66人、18车、14艇增援。截至目前，应急救援、人员转移等工作还在持续进行中。(尹柏寒)",
 						type:"video",//img图片，video视频
 						playnum:"20w",
 						playtime:"2:40",
-						media: [
+						medias: [
 						{ type: 'image', src: '../../static/datapic/16.jpg', width: 1024, height: 2768 },
 
 						// ... 更多媒体项
@@ -120,7 +124,7 @@
 			//关注
 			guanzhu(index1){			
 				let o=this.newlist[this.tabindex].list[index1];
-				o.guanzhupd=true;
+				o.isguanzhu=true;
 				uni.showToast({
 					title:'关注成功',
 					mask:true,
@@ -162,7 +166,7 @@
 					let obj={
 						userimg:"../../static/userpic/10.jpg",
 						username:"昵称",
-						guanzhupd:false,
+						isguanzhu:false,
 						title:"中共中央举行纪念邓小平同志诞辰120周年座谈会习近平发表重要讲话",
 						contents:"新华社北京8月22日电 中共中央22日上午在人民大会堂举行座谈会，纪念邓小平同志诞辰120周年。中共中央总书记、国家主席、中央军委主席习近平发表重要讲话。他强调，邓小平同志是全党全军全国各族人民公认的享有崇高威望的卓越领导人，伟大的马克思主义者，伟大的无产阶级革命家、政治家、军事家、外交家，久经考验的共产主义战士，党的第二代中央领导集体的核心，中国社会主义改革开放和现代化建设的总设计师，中国特色社会主义道路的开创者，邓小平理论的主要创立者，为世界和平和发展作出重大贡献的伟大国际主义者。他对党、对人民、对国家、对民族、对世界作出了突出贡献，功勋彪炳史册、永励后人。",
 						type:"img",//img图片，video视频

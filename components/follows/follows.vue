@@ -48,7 +48,7 @@
 			//关注
 			guanzhu(index){			
 				let o=this.followList.list[index];
-				o.guanzhupd=true;
+				o.isguanzhu=true;
 				uni.showToast({
 					title:'关注成功',
 					mask:true,
@@ -86,10 +86,10 @@
 					let obj={
 						userimg:"../../static/userpic/10.jpg",
 						username:"昵称",
-						guanzhupd:false,
+						isguanzhu:false,
 						title:"我是标题",
 						type:"img",//img图片，video视频
-						media: [
+						medias: [
 						],
 						biaoqing:{
 							index:0,//0表示无操作，1表示顶了，2表示踩了

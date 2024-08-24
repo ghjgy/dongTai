@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<detaiLinfo :item="list"></detaiLinfo>
+		<detaiLinfo :item="detailInfo"></detaiLinfo>
 		<view class="common-list-title">最新评论 {{commonlist.count}}</view>
 		<view class="uni-comment u-comment">
 			<!-- 一级评论 -->
@@ -33,23 +33,7 @@
 			return {
 				maskshow:false,
 				providerList:[],
-				list:{
-					//图文
-				  userimg:'../../static/userpic/19.jpg',
-				  username:'张三',
-				  userage:'30',
-				  sex:0,//0代表男，1 代表女
-				  isguanzhu:false,
-				  title:'庆祝祖国成立70周年！',
-				  titleimg:'../../static/datapic/42.jpg',
-				  imgarry:['../../static/datapic/42.jpg','../../static/datapic/43.jpg'],
-				  video:false,
-				  sharea:false,
-				  positiona:'深圳 龙岗',
-				  sharenum:30,
-				  pinglunnum:100,
-				  zannum:50
-			    },
+				detailInfo:{},
 			    commonlist:{
 					count:20,
 					commonarry:[]
@@ -58,7 +42,9 @@
 		},
 		onLoad(e) {
 			//console.log(typeof(e.detailinfo))
-			this.initTitle(JSON.parse(e.detailinfo));
+			this.detailInfo = e.detailinfo ? JSON.parse(decodeURIComponent(e.detailinfo)) : null;
+			console.log('Received detail info:', this.detailInfo);
+			this.initTitle(this.detailInfo);
 			this.commonlistdata();
 			uni.getProvider({
 				service: 'share',
@@ -195,7 +181,7 @@
 			//修改标题
 			initTitle(obj){
 				 uni.setNavigationBarTitle({
-				    title: obj.contents
+				    title: obj.title
 				}); 
 			}
 		}
